@@ -2,77 +2,589 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ÇIRALI ALMERA BEACH-KITCHEN</title>
-  <style>
-    body {
-      margin: 0;
-      background: #E9E1D2;
-      color: #29352D;
-      font-family: Arial, sans-serif;
-      text-align: center;
-    }
-    header {
-      background: #29352D;
-      color: #F6F0E5;
-      padding: 45px 15px;
-    }
-    h1 { letter-spacing: 5px; }
-    main { padding: 25px 16px; }
-    button {
-      padding: 10px 14px;
-      margin: 4px;
-      border: 1px solid #29352D;
-      border-radius: 20px;
-      background: transparent;
-      color: inherit;
-    }
-    .item {
-      background: #F6F0E5;
-      border-radius: 12px;
-      padding: 18px;
-      margin: 12px auto;
-      max-width: 380px;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#E9E1D2">
+<title>ALMERA | Beach Kitchen</title>
+
+<style>
+:root {
+  --sand: #E9E1D2;
+  --cream: #F8F4EC;
+  --olive: #344532;
+  --olive-light: #687653;
+  --gold: #B49A61;
+  --text: #29352A;
+  --muted: #777866;
+  --line: #D8CEBA;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--sand);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+}
+
+button { font: inherit; }
+
+.page {
+  max-width: 760px;
+  margin: auto;
+  padding: 22px 18px 44px;
+}
+
+header {
+  text-align: center;
+  padding: 25px 10px 22px;
+  border-bottom: 1px solid var(--gold);
+}
+
+.location {
+  font-size: 10px;
+  letter-spacing: 4px;
+  color: var(--olive-light);
+  margin-bottom: 12px;
+}
+
+.logo {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(42px, 12vw, 62px);
+  font-weight: 500;
+  letter-spacing: 7px;
+  color: var(--olive);
+}
+
+.subtitle {
+  font-size: 11px;
+  letter-spacing: 4px;
+  margin-top: 8px;
+  color: var(--olive-light);
+}
+
+.languages {
+  display: flex;
+  justify-content: center;
+  gap: 7px;
+  margin: 20px 0 27px;
+}
+
+.lang-btn {
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--olive);
+  border-radius: 20px;
+  padding: 8px 12px;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.lang-btn.active {
+  background: var(--olive);
+  border-color: var(--olive);
+  color: white;
+}
+
+.intro {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.eyebrow {
+  color: var(--gold);
+  letter-spacing: 3px;
+  font-size: 10px;
+  text-transform: uppercase;
+}
+
+.intro h2 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  font-size: 32px;
+  color: var(--olive);
+  margin: 9px 0;
+}
+
+.intro p {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.7;
+  margin: 0 auto;
+  max-width: 300px;
+}
+
+.section-label {
+  color: var(--olive);
+  font-size: 11px;
+  letter-spacing: 2px;
+  margin: 25px 0 13px;
+  text-transform: uppercase;
+}
+
+.categories {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 11px;
+}
+
+.category-btn {
+  min-height: 104px;
+  padding: 16px 10px;
+  background: var(--cream);
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  color: var(--olive);
+  cursor: pointer;
+  text-align: center;
+  transition: background .2s, border-color .2s,
+    transform .2s;
+}
+
+.category-btn:active { transform: scale(.98); }
+
+.category-icon {
+  display: block;
+  font-size: 24px;
+  margin-bottom: 9px;
+}
+
+.category-name {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 16px;
+}
+
+.category-btn.active {
+  background: var(--olive);
+  border-color: var(--gold);
+  color: var(--cream);
+  box-shadow: inset 0 0 0 1px var(--gold);
+}
+
+#menuSection { margin-top: 30px; }
+
+.menu-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  border-bottom: 1px solid var(--gold);
+  padding-bottom: 13px;
+  margin-bottom: 15px;
+}
+
+.menu-heading h2 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  font-size: 27px;
+  color: var(--olive);
+  margin: 0;
+}
+
+.back-btn {
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 8px 12px;
+  color: var(--olive);
+  background: transparent;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.products {
+  display: grid;
+  gap: 12px;
+}
+
+.product-card {
+  background: var(--cream);
+  border: 1px solid #E1D7C5;
+  border-radius: 13px;
+  padding: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.product-name {
+  color: var(--olive);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 19px;
+  line-height: 1.35;
+  margin: 0 0 7px;
+}
+
+.product-description {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--muted);
+  margin: 0;
+}
+
+.product-price {
+  flex-shrink: 0;
+  white-space: nowrap;
+  color: var(--olive);
+  font-weight: 650;
+  font-size: 15px;
+  padding-top: 3px;
+}
+
+.price-currency {
+  font-size: 11px;
+  color: var(--gold);
+}
+
+.empty-state {
+  background: var(--cream);
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  padding: 24px 18px;
+  color: var(--muted);
+  text-align: center;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+footer {
+  text-align: center;
+  margin-top: 38px;
+  padding-top: 20px;
+  border-top: 1px solid var(--gold);
+  color: var(--olive-light);
+  font-size: 10px;
+  letter-spacing: 2px;
+  line-height: 2;
+}
+
+.hidden { display: none !important; }
+
+@media (min-width: 600px) {
+  .page { padding: 32px 28px 50px; }
+  .categories { grid-template-columns: repeat(3, 1fr); }
+  .category-btn { min-height: 115px; }
+}
+</style>
 </head>
+
 <body>
+<div class="page">
+
   <header>
-    <h1>ALMERA</h1>
-    <p>ÇIRALI · BEACH · KITCHEN</p>
-    <p id="welcome">Akdeniz'in tadını keşfedin</p>
+    <div class="location" data-i18n="location">
+      ÇIRALI · ANTALYA
+    </div>
+    <h1 class="logo">ALMERA</h1>
+    <div class="subtitle">BEACH · KITCHEN</div>
   </header>
+
+  <nav class="languages" aria-label="Language">
+    <button class="lang-btn active" data-lang="tr">TR</button>
+    <button class="lang-btn" data-lang="en">EN</button>
+    <button class="lang-btn" data-lang="ru">RU</button>
+    <button class="lang-btn" data-lang="de">DE</button>
+  </nav>
+
   <main>
-    <button onclick="show('tr')">Türkçe</button>
-    <button onclick="show('en')">English</button>
-    <button onclick="show('ru')">Русский</button>
-    <button onclick="show('de')">Deutsch</button>
-    <div id="menu"></div>
+    <section class="intro" id="homeIntro">
+      <div class="eyebrow" data-i18n="welcome">AKDENİZ'İN LEZZETLERİ</div>
+      <h2 data-i18n="menuTitle">Menümüz</h2>
+      <p data-i18n="welcomeText">
+        Size özel lezzetleri keşfedin.
+        Görmek istediğiniz kategoriyi seçin.
+      </p>
+    </section>
+
+    <div class="section-label" data-i18n="categoriesTitle">
+      KATEGORİLER
+    </div>
+
+    <section class="categories" id="categories"></section>
+
+    <section id="menuSection" class="hidden">
+      <div class="menu-heading">
+        <h2 id="selectedCategory"></h2>
+        <button class="back-btn" id="backBtn" data-i18n="back">
+          ← Kategoriler
+        </button>
+      </div>
+      <div class="products" id="products"></div>
+    </section>
   </main>
-  <script>
-    const menus = {
-      tr: ["Başlangıçlar", "Mevsim Salatası", "Taze mevsim yeşillikleri", "Ana Yemekler", "Izgara Tavuk", "Izgarada hazırlanır", "İçecekler", "Türk Kahvesi", "Geleneksel Türk kahvesi"],
-      en: ["Starters", "Seasonal Salad", "Fresh seasonal greens", "Main Courses", "Grilled Chicken", "Prepared on the grill", "Drinks", "Turkish Coffee", "Traditional Turkish coffee"],
-      ru: ["Закуски", "Сезонный салат", "Свежая зелень", "Основные блюда", "Курица на гриле", "Приготовлена на гриле", "Напитки", "Турецкий кофе", "Традиционный турецкий кофе"],
-      de: ["Vorspeisen", "Saisonsalat", "Frische Blattsalate", "Hauptgerichte", "Gegrilltes Hähnchen", "Frisch gegrillt", "Getränke", "Türkischer Kaffee", "Traditioneller türkischer Kaffee"]
-    };
-    function show(lang) {
-      const d = menus[lang];
-      document.getElementById('welcome').textContent = {
-        tr: "Akdeniz'in tadını keşfedin",
-        en: "Discover the Mediterranean",
-        ru: "Откройте вкус Средиземноморья",
-        de: "Entdecken Sie das Mittelmeer"
-      }[lang];
-      let html = "";
-      for (let i = 0; i < 3; i++) {
-        html += `<h2>${d[i*3]}</h2><div class="item"><h3>${d[i*3+1]}</h3><p>${d[i*3+2]}</p><strong>₺${[250,420,120][i]}</strong></div>`;
-      }
-      document.getElementById('menu').innerHTML = html;
+
+  <footer>
+    <div>ALMERA BEACH · KITCHEN</div>
+    <div>ÇIRALI · ANTALYA</div>
+  </footer>
+</div>
+
+<script>
+const translations = {
+  tr: {
+    location: "ÇIRALI · ANTALYA",
+    welcome: "AKDENİZ'İN LEZZETLERİ",
+    menuTitle: "Menümüz",
+    welcomeText: "Size özel lezzetleri keşfedin. Görmek istediğiniz kategoriyi seçin.",
+    categoriesTitle: "KATEGORİLER",
+    back: "← Kategoriler",
+    choose: "Bu kategoride henüz ürün bulunmuyor.",
+    categories: {
+      starters: "Başlangıçlar",
+      mains: "Ana Yemekler",
+      salads: "Salatalar",
+      drinks: "İçecekler",
+      desserts: "Tatlılar",
+      cocktails: "Kokteyller"
+    },
+    products: {
+      seasonalSalad: ["Mevsim Salatası", "Taze mevsim yeşillikleriyle hazırlanır."],
+      bruschetta: ["Bruschetta", "Domates, zeytinyağı ve çıtır ekmek."],
+      grilledChicken: ["Izgara Tavuk", "Özenle marine edilmiş ızgara tavuk."],
+      grilledSeaBass: ["Izgara Levrek", "Izgarada pişirilmiş levrek."],
+      greenSalad: ["Akdeniz Salatası", "Taze yeşillikler ve zeytinyağı."],
+      turkishCoffee: ["Türk Kahvesi", "Geleneksel Türk kahvesi."],
+      lemonade: ["Ev Yapımı Limonata", "Ferahlatıcı limon lezzeti."],
+      sanSebastian: ["San Sebastian", "Kremamsı dokusuyla cheesecake."],
+      iceCream: ["Dondurma", "Serinletici dondurma."],
+      espressoMartini: ["Espresso Martini", "Espresso ve kahve aromaları."]
     }
-    show('tr');
-  </script>
+  },
+  en: {
+    location: "ÇIRALI · ANTALYA",
+    welcome: "MEDITERRANEAN FLAVOURS",
+    menuTitle: "Our Menu",
+    welcomeText: "Discover our flavours. Choose a category to explore.",
+    categoriesTitle: "CATEGORIES",
+    back: "← Categories",
+    choose: "There are no products in this category yet.",
+    categories: {
+      starters: "Starters",
+      mains: "Main Courses",
+      salads: "Salads",
+      drinks: "Drinks",
+      desserts: "Desserts",
+      cocktails: "Cocktails"
+    },
+    products: {
+      seasonalSalad: ["Seasonal Salad", "Fresh seasonal greens."],
+      bruschetta: ["Bruschetta", "Tomato, olive oil and crisp bread."],
+      grilledChicken: ["Grilled Chicken", "Carefully marinated grilled chicken."],
+      grilledSeaBass: ["Grilled Sea Bass", "Fresh sea bass grilled to perfection."],
+      greenSalad: ["Mediterranean Salad", "Fresh greens and olive oil."],
+      turkishCoffee: ["Turkish Coffee", "Traditional Turkish coffee."],
+      lemonade: ["Homemade Lemonade", "A refreshing lemon drink."],
+      sanSebastian: ["San Sebastian Cheesecake", "Creamy cheesecake."],
+      iceCream: ["Ice Cream", "A refreshing frozen treat."],
+      espressoMartini: ["Espresso Martini", "Espresso and rich coffee notes."]
+    }
+  },
+  ru: {
+    location: "ЧЫРАЛЫ · АНТАЛЬЯ",
+    welcome: "ВКУСЫ СРЕДИЗЕМНОМОРЬЯ",
+    menuTitle: "Наше меню",
+    welcomeText: "Откройте для себя наши блюда. Выберите категорию.",
+    categoriesTitle: "КАТЕГОРИИ",
+    back: "← Категории",
+    choose: "В этой категории пока нет блюд.",
+    categories: {
+      starters: "Закуски",
+      mains: "Основные блюда",
+      salads: "Салаты",
+      drinks: "Напитки",
+      desserts: "Десерты",
+      cocktails: "Коктейли"
+    },
+    products: {
+      seasonalSalad: ["Сезонный салат", "Свежая сезонная зелень."],
+      bruschetta: ["Брускетта", "Томаты, оливковое масло и хрустящий хлеб."],
+      grilledChicken: ["Курица на гриле", "Маринованная курица на гриле."],
+      grilledSeaBass: ["Сибас на гриле", "Сибас, приготовленный на гриле."],
+      greenSalad: ["Средиземноморский салат", "Свежая зелень и оливковое масло."],
+      turkishCoffee: ["Турецкий кофе", "Традиционный турецкий кофе."],
+      lemonade: ["Домашний лимонад", "Освежающий лимонный напиток."],
+      sanSebastian: ["Чизкейк Сан-Себастьян", "Нежный сливочный чизкейк."],
+      iceCream: ["Мороженое", "Освежающее мороженое."],
+      espressoMartini: ["Эспрессо Мартини", "Эспрессо и насыщенный кофейный вкус."]
+    }
+  },
+  de: {
+    location: "ÇIRALI · ANTALYA",
+    welcome: "MEDITERRANE GENÜSSE",
+    menuTitle: "Unsere Speisekarte",
+    welcomeText: "Entdecken Sie unsere Spezialitäten. Wählen Sie eine Kategorie.",
+    categoriesTitle: "KATEGORIEN",
+    back: "← Kategorien",
+    choose: "In dieser Kategorie gibt es noch keine Produkte.",
+    categories: {
+      starters: "Vorspeisen",
+      mains: "Hauptgerichte",
+      salads: "Salate",
+      drinks: "Getränke",
+      desserts: "Desserts",
+      cocktails: "Cocktails"
+    },
+    products: {
+      seasonalSalad: ["Saisonaler Salat", "Frische saisonale Blattsalate."],
+      bruschetta: ["Bruschetta", "Tomaten, Olivenöl und knuspriges Brot."],
+      grilledChicken: ["Gegrilltes Hähnchen", "Sorgfältig mariniertes Grillhähnchen."],
+      grilledSeaBass: ["Gegrillter Wolfsbarsch", "Gegrillter frischer Wolfsbarsch."],
+      greenSalad: ["Mediterraner Salat", "Frische Blattsalate und Olivenöl."],
+      turkishCoffee: ["Türkischer Kaffee", "Traditioneller türkischer Kaffee."],
+      lemonade: ["Hausgemachte Limonade", "Erfrischender Zitronengeschmack."],
+      sanSebastian: ["San-Sebastian-Käsekuchen", "Cremiger Käsekuchen."],
+      iceCream: ["Eiscreme", "Erfrischendes Eis."],
+      espressoMartini: ["Espresso Martini", "Espresso mit intensivem Kaffeearoma."]
+    }
+  }
+};
+
+const categories = [
+  { id: "starters", icon: "❋", products: [
+    { id: "seasonalSalad", price: 250 },
+    { id: "bruschetta", price: 220 }
+  ]},
+  { id: "mains", icon: "✳", products: [
+    { id: "grilledChicken", price: 420 },
+    { id: "grilledSeaBass", price: 580 }
+  ]},
+  { id: "salads", icon: "❋", products: [
+    { id: "greenSalad", price: 280 }
+  ]},
+  { id: "drinks", icon: "◒", products: [
+    { id: "turkishCoffee", price: 120 },
+    { id: "lemonade", price: 160 }
+  ]},
+  { id: "desserts", icon: "◇", products: [
+    { id: "sanSebastian", price: 240 },
+    { id: "iceCream", price: 150 }
+  ]},
+  { id: "cocktails", icon: "✧", products: [
+    { id: "espressoMartini", price: 320 }
+  ]}
+];
+
+let currentLang = "tr";
+let selectedCategory = null;
+
+const categoryContainer = document.getElementById("categories");
+const menuSection = document.getElementById("menuSection");
+const productsContainer = document.getElementById("products");
+
+function renderCategories() {
+  const t = translations[currentLang];
+  categoryContainer.innerHTML = "";
+
+  categories.forEach(category => {
+    const button = document.createElement("button");
+    button.className = "category-btn" +
+      (selectedCategory === category.id ? " active" : "");
+    button.type = "button";
+    button.setAttribute("aria-pressed",
+      selectedCategory === category.id ? "true" : "false");
+
+    const icon = document.createElement("span");
+    icon.className = "category-icon";
+    icon.textContent = category.icon;
+
+    const name = document.createElement("span");
+    name.className = "category-name";
+    name.textContent = t.categories[category.id];
+
+    button.append(icon, name);
+    button.addEventListener("click", () => {
+      selectedCategory = category.id;
+      renderCategories();
+      renderProducts();
+      menuSection.classList.remove("hidden");
+      document.getElementById("homeIntro").classList.add("hidden");
+      menuSection.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+
+    categoryContainer.appendChild(button);
+  });
+}
+
+function renderProducts() {
+  const t = translations[currentLang];
+  const category = categories.find(c => c.id === selectedCategory);
+  if (!category) return;
+
+  document.getElementById("selectedCategory").textContent =
+    t.categories[category.id];
+
+  productsContainer.innerHTML = "";
+
+  if (category.products.length === 0) {
+    const empty = document.createElement("div");
+    empty.className = "empty-state";
+    empty.textContent = t.choose;
+    productsContainer.appendChild(empty);
+    return;
+  }
+
+  category.products.forEach(product => {
+    const details = t.products[product.id];
+    if (!details) return;
+
+    const card = document.createElement("article");
+    card.className = "product-card";
+
+    const info = document.createElement("div");
+    info.style.flex = "1";
+
+    const name = document.createElement("h3");
+    name.className = "product-name";
+    name.textContent = details[0];
+
+    const description = document.createElement("p");
+    description.className = "product-description";
+    description.textContent = details[1];
+
+    info.append(name, description);
+
+    const price = document.createElement("div");
+    price.className = "product-price";
+    price.textContent = "₺" + product.price;
+
+    card.append(info, price);
+    productsContainer.appendChild(card);
+  });
+}
+
+function setLanguage(lang) {
+  currentLang = lang;
+  document.documentElement.lang = lang;
+
+  document.querySelectorAll("[data-i18n]").forEach(element => {
+    const key = element.dataset.i18n;
+    element.textContent = translations[lang][key];
+  });
+
+  document.querySelectorAll(".lang-btn").forEach(button => {
+    button.classList.toggle("active", button.dataset.lang === lang);
+  });
+
+  renderCategories();
+  if (selectedCategory) renderProducts();
+}
+
+document.querySelectorAll(".lang-btn").forEach(button => {
+  button.addEventListener("click", () => setLanguage(button.dataset.lang));
+});
+
+document.getElementById("backBtn").addEventListener("click", () => {
+  selectedCategory = null;
+  menuSection.classList.add("hidden");
+  document.getElementById("homeIntro").classList.remove("hidden");
+  renderCategories();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+setLanguage("tr");
+</script>
 </body>
 </html>
-
