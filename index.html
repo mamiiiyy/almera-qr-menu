@@ -1,1 +1,78 @@
 
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ÇIRALI ALMERA BEACH-KITCHEN</title>
+  <style>
+    body {
+      margin: 0;
+      background: #E9E1D2;
+      color: #29352D;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+    header {
+      background: #29352D;
+      color: #F6F0E5;
+      padding: 45px 15px;
+    }
+    h1 { letter-spacing: 5px; }
+    main { padding: 25px 16px; }
+    button {
+      padding: 10px 14px;
+      margin: 4px;
+      border: 1px solid #29352D;
+      border-radius: 20px;
+      background: transparent;
+      color: inherit;
+    }
+    .item {
+      background: #F6F0E5;
+      border-radius: 12px;
+      padding: 18px;
+      margin: 12px auto;
+      max-width: 380px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>ALMERA</h1>
+    <p>ÇIRALI · BEACH · KITCHEN</p>
+    <p id="welcome">Akdeniz'in tadını keşfedin</p>
+  </header>
+  <main>
+    <button onclick="show('tr')">Türkçe</button>
+    <button onclick="show('en')">English</button>
+    <button onclick="show('ru')">Русский</button>
+    <button onclick="show('de')">Deutsch</button>
+    <div id="menu"></div>
+  </main>
+  <script>
+    const menus = {
+      tr: ["Başlangıçlar", "Mevsim Salatası", "Taze mevsim yeşillikleri", "Ana Yemekler", "Izgara Tavuk", "Izgarada hazırlanır", "İçecekler", "Türk Kahvesi", "Geleneksel Türk kahvesi"],
+      en: ["Starters", "Seasonal Salad", "Fresh seasonal greens", "Main Courses", "Grilled Chicken", "Prepared on the grill", "Drinks", "Turkish Coffee", "Traditional Turkish coffee"],
+      ru: ["Закуски", "Сезонный салат", "Свежая зелень", "Основные блюда", "Курица на гриле", "Приготовлена на гриле", "Напитки", "Турецкий кофе", "Традиционный турецкий кофе"],
+      de: ["Vorspeisen", "Saisonsalat", "Frische Blattsalate", "Hauptgerichte", "Gegrilltes Hähnchen", "Frisch gegrillt", "Getränke", "Türkischer Kaffee", "Traditioneller türkischer Kaffee"]
+    };
+    function show(lang) {
+      const d = menus[lang];
+      document.getElementById('welcome').textContent = {
+        tr: "Akdeniz'in tadını keşfedin",
+        en: "Discover the Mediterranean",
+        ru: "Откройте вкус Средиземноморья",
+        de: "Entdecken Sie das Mittelmeer"
+      }[lang];
+      let html = "";
+      for (let i = 0; i < 3; i++) {
+        html += `<h2>${d[i*3]}</h2><div class="item"><h3>${d[i*3+1]}</h3><p>${d[i*3+2]}</p><strong>₺${[250,420,120][i]}</strong></div>`;
+      }
+      document.getElementById('menu').innerHTML = html;
+    }
+    show('tr');
+  </script>
+</body>
+</html>
+
